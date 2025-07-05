@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - REUNITE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../reunite logo.png">
+    <style>
+        body {
+            background: #f8f9fa !important;
+        }
+        .account-container {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.03);
+            background: #fff !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-brand" style="display: flex; align-items: center; gap: 10px;">
+                <img src="../reunite logo.png" alt="REUNITE" class="nav-logo">
+            </div>
+            <div class="nav-links">
+                <a href="../home.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link">Announcements</a>
+                <button id="logoutBtn" class="btn btn-danger">Logout</button>
+            </div>
+        </nav>
+
+        <main class="account-container">
+            <div class="account-sidebar">
+                <div class="user-profile">
+                    <img id="profilePicture" src="images/default-avatar.png" alt="Profile Picture" class="profile-picture">
+                    <h2 id="username">Loading...</h2>
+                </div>
+                <div class="account-menu">
+                    <button class="menu-item active" data-section="profile">Profile Settings</button>
+                    <button class="menu-item" data-section="posts">My Announcements</button>
+                    <button class="menu-item" data-section="security">Security</button>
+                </div>
+            </div>
+
+            <div class="account-content">
+                <!-- Profile Settings Section -->
+                <section id="profile-section" class="account-section active">
+                    <h2>Profile Settings</h2>
+                    <form id="profileForm" class="form">
+                        <div class="form-group">
+                            <label for="profilePictureInput">Profile Picture</label>
+                            <input type="file" id="profilePictureInput" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="usernameInput">Username</label>
+                            <input type="text" id="usernameInput" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bioInput">Bio</label>
+                            <textarea id="bioInput" rows="3" placeholder="Tell us about yourself..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </section>
+
+                <!-- My Posts Section -->
+                <section id="posts-section" class="account-section">
+                    <h2>My Announcements</h2>
+                    <div class="posts-tabs">
+                        <button class="tab-btn active" data-tab="general">General Posts</button>
+                        <button class="tab-btn" data-tab="college-specific">College Specific</button>
+                    </div>
+                    <div id="userPosts" class="posts-container">
+                        <!-- Posts will be loaded here -->
+                    </div>
+                    <div class="pagination">
+                        <button id="prevPage" class="btn btn-secondary">Previous</button>
+                        <span id="pageInfo">Page 1 of 1</span>
+                        <button id="nextPage" class="btn btn-secondary">Next</button>
+                    </div>
+                </section>
+
+                <!-- Security Section -->
+                <section id="security-section" class="account-section">
+                    <h2>Security Settings</h2>
+                    <form id="passwordForm" class="form">
+                        <input type="text" name="username" autocomplete="username" style="display: none;">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" required autocomplete="current-password">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" required autocomplete="new-password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <input type="password" id="confirmPassword" required autocomplete="new-password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </form>
+                    
+                    <hr style="margin: 2rem 0; border: 1px solid #e9ecef;">
+                    
+                    <div class="danger-zone">
+                        <h3 style="color: #dc3545; margin-bottom: 1rem;">Danger Zone</h3>
+                        <div class="danger-warning" style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;">
+                            <p style="margin: 0; color: #856404;">
+                                <strong>Warning:</strong> Deleting your account is permanent and cannot be undone. 
+                                This will remove all your posts, comments, and likes from the platform.
+                            </p>
+                        </div>
+                        <form id="deleteAccountForm" class="form">
+                            <div class="form-group">
+                                <label for="deletePassword">Enter your password to confirm deletion</label>
+                                <input type="password" id="deletePassword" required placeholder="Enter your password">
+                            </div>
+                            <button type="submit" class="btn btn-danger" style="background-color: #dc3545; border-color: #dc3545;">
+                                <i class="fas fa-trash"></i> Delete Account
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="account.js"></script>
+</body>
+</html> 

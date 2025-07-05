@@ -1,0 +1,434 @@
+[
+  {
+    "Name": "MASRATH UNNISA",
+    "Bio": "Passionate Computer Science graduate interested in web development and software engineering.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "ECE",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/masrath-unnisa"
+  },
+  {
+    "Name": "IQRA AZEEZ",
+    "Bio": "CS Undergrad at Muffakham Jah College of Engineering & Technology",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "CSE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/iqra-azeez-708ab8312"
+  },
+  {
+    "Name": "AYESHA IBRAHIM",
+    "Bio": "Aspiring IT specialist with an interest in cloud computing and security.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "IT",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/ayesha-ibrahim"
+  },
+  {
+    "Name": "DURRE SHAHWAR NAWAZIA KHANUM",
+    "Bio": "Student at Muffakham Jah College of Engineering & Technology",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "ECE",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/durre-shahwar-nawazia-khanum-641958341"
+  },
+  {
+    "Name": "SYEDA MALIHA FATIMA",
+    "Bio": "Tech enthusiast with a knack for mobile app development and UI/UX design.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "CSE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/syeda-maliha-fatima"
+  },
+  {
+    "Name": "HAPSA AKHTAR",
+    "Bio": "Engineering student eager to explore AI, Data Science, and full stack development.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "IT",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/hapsa-akhtar"
+  },
+  {
+    "Name": "AHMEDUNNISA HAFSA",
+    "Bio": "Motivated student focused on software development and problem-solving.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "ECE",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/ahmedunnisa-hafsa"
+  },
+  {
+    "Name": "AFREEN UNNISA",
+    "Bio": "Aspiring Software Engineer | Computer Science Enthusiast | Passionate About AI and Machine Learning",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "CSE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/afreen-unnisa-60127127b"
+  },
+  {
+    "Name": "BHAVISHYA CH",
+    "Bio": "Student at MJCET",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "IT",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/bhavishya-ch-6395871a2"
+  },
+  {
+    "Name": "MADIHA AHMED",
+    "Bio": "Keen learner passionate about backend systems and database management.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "ECE",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/madiha-ahmed"
+  },
+  {
+    "Name": "NIMRAH RAHMAN",
+    "Bio": "Student at Muffakham Jah College of Engineering & Technology",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "CSE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/nimrahrahman"
+  },
+  {
+    "Name": "K SRI PRIVA",
+    "Bio": "Highly driven engineering student enthusiastic about robotics and embedded systems.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "IT",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/k-sri-priva"
+  },
+  {
+    "Name": "ARIJ FATHIMA",
+    "Bio": "Passionate about Java full stack development",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "CSE",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/arij-fathima-3a2508245"
+  },
+  {
+    "Name": "FIRDOUS",
+    "Bio": "Web developer in training, excited about front-end technologies and modern frameworks.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "ECE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/firdous"
+  },
+  {
+    "Name": "SAYED RAYYAH",
+    "Bio": "Tech-savvy student aiming to innovate in AI and cybersecurity domains.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "IT",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/sayed-rayyah"
+  },
+  {
+    "Name": "MOHAMMED WAJAHATH ULLA KHAN",
+    "Bio": "Engineering student with interests in blockchain, ML, and scalable web applications.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "CSE",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/mohammed-wajahath-ulla-khan"
+  },
+  {
+    "Name": "SACHIT WADHWA",
+    "Bio": "Student at Muffakham Jah College of Engineering & Technology",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "ECE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/sachit-wadhwa"
+  },
+  {
+    "Name": "MOHAMMED ARETHESHAM",
+    "Bio": "Interested in game development, real-time systems, and tech entrepreneurship.",
+    "College": "Muffakham Jah College of Engineering & Technology",
+    "Branch": "IT",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/mohammed-arethesham"
+  },
+  {
+    "Name": "MOHAMMED ARETHESHAM",
+    "Bio": "Software enthusiast focused on backend systems and cloud integration.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "IT",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/mohammed-arethesham"
+  },
+  {
+    "Name": "AYAZ AHMED",
+    "Bio": "Tech-savvy engineering graduate passionate about DevOps and networking.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "ECE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/ayaz-ahmed"
+  },
+  {
+    "Name": "MOHAMMED ABDULSUBOOR",
+    "Bio": "IT graduate interested in cybersecurity and ethical hacking.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "CSE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/mohammed-abdulsuboor"
+  },
+  {
+    "Name": "SHAIK ABRAR HUSSAIN",
+    "Bio": "Master's Student at DePaul University | Software Development & Deep Learning | Tech Industry",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "CSE",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/abrar-hussain-shaik-675000287"
+  },
+  {
+    "Name": "FAHAD KHAN",
+    "Bio": "Mercedes-Benz CRM Europe | Masters in Wirtschaftsinformatik(MIS)",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "ECE",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/fahad-khan-bb788523b"
+  },
+  {
+    "Name": "WASEEM AKRAM",
+    "Bio": "Future data analyst with a passion for visualization and statistics.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "IT",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/waseem-akram"
+  },
+  {
+    "Name": "SYED ABDUL QUADEER KASHIF",
+    "Bio": "JNTUH| MERN Stack |Data Science Enthusiast",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "CSE",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/syed-abdul-quadeer-kashif-22a318247"
+  },
+  {
+    "Name": "ALQIYA BANO",
+    "Bio": "Aspiring software engineer exploring frontend technologies.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "ECE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/alqiya-bano"
+  },
+  {
+    "Name": "TAHREEM UNISSA BEGUM",
+    "Bio": "Dedicated to learning AI, ML, and full-stack web development.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "IT",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/tahreem-unissa"
+  },
+  {
+    "Name": "VATSAVAI MANASWINI",
+    "Bio": "Future IT leader interested in mobile and embedded systems.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "IT",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/vatsavai-manaswini"
+  },
+  {
+    "Name": "BUSHRA ANJUM",
+    "Bio": "Technology enthusiast passionate about frontend development.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "ECE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/bushra-anjum"
+  },
+  {
+    "Name": "NABEELA FATIMA",
+    "Bio": "Cloud computing and data science enthusiast.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "CSE",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/nabeela-fatima"
+  },
+  {
+    "Name": "HUMRIYA SOHA MERAJ",
+    "Bio": "Focused on AI research and open-source contributions.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "ECE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/humriya-soha"
+  },
+  {
+    "Name": "SAREEN ARSHI KHAN",
+    "Bio": "Developer and design thinker with a flair for UI/UX.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "IT",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/sareen-arshi"
+  },
+  {
+    "Name": "SAFIYA",
+    "Bio": "CS student with interest in databases and cloud services.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "CSE",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/safiya"
+  },
+  {
+    "Name": "JUWERIA ASHFAQ HUSSAIN",
+    "Bio": "Learning to innovate through AI and ML solutions.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "ECE",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/juweria-ashfaq"
+  },
+  {
+    "Name": "ZEENATH JAHAN",
+    "Bio": "IT graduate skilled in full stack development.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "IT",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/zeenath-jahan"
+  },
+  {
+    "Name": "SYEDA UMAYMA",
+    "Bio": "Focused on software development and innovation.",
+    "College": "Deccan College of Engineering and Technology",
+    "Branch": "CSE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/syeda-umayma"
+  },
+  {
+    "Name": "Sidra Irum",
+    "Bio": "Dedicated to web development with hands-on experience in React and Node.js.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "IT",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/example-user1"
+  },
+  {
+    "Name": "Bepar Noor Akmal",
+    "Bio": "Keen interest in embedded systems and robotics.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "ECE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/example-user2"
+  },
+  {
+    "Name": "Shaik Abu Bakar Siddiq",
+    "Bio": "Exploring cloud computing and DevOps tools.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "ECE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/example-user3"
+  },
+  {
+    "Name": "Mohd Zeeshan",
+    "Bio": "Keen interest in embedded systems and robotics.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "CSE",
+    "Year": 2019,
+    "LinkedIn": "https://www.linkedin.com/in/example-user4"
+  },
+  {
+    "Name": "Mohammad Sohaib Ahmed",
+    "Bio": "Software Engineering enthusiast with skills in Python and JavaScript.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "ECE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/example-user5"
+  },
+  {
+    "Name": "Mohammed Omar",
+    "Bio": "Interested in AI, Machine Learning, and Data Science.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "CSE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/example-user6"
+  },
+  {
+    "Name": "Mohammed Imran Safi",
+    "Bio": "Keen interest in embedded systems and robotics.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "IT",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/example-user7"
+  },
+  {
+    "Name": "Aadil Khan",
+    "Bio": "Dedicated to web development with hands-on experience in React and Node.js.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "IT",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/example-user8"
+  },
+  {
+    "Name": "Sunar Wajeed",
+    "Bio": "Dedicated to web development with hands-on experience in React and Node.js.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "CSE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/example-user9"
+  },
+  {
+    "Name": "Ahmad Husain Ansari",
+    "Bio": "Exploring cloud computing and DevOps tools.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "ECE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/example-user10"
+  },
+  {
+    "Name": "Mohammed Saqib Ur Rahman",
+    "Bio": "Interested in AI, Machine Learning, and Data Science.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "IT",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/example-user11"
+  },
+  {
+    "Name": "Mohammed Moiz",
+    "Bio": "Keen interest in embedded systems and robotics.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "ECE",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/example-user12"
+  },
+  {
+    "Name": "Mohammed Yahya Hussaii",
+    "Bio": "Keen interest in embedded systems and robotics.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "ECE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/example-user13"
+  },
+  {
+    "Name": "Shehla Ayesha",
+    "Bio": "Attended Osmania University, Hyderabad",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "IT",
+    "Year": 2018,
+    "LinkedIn": "https://www.linkedin.com/in/shehla-ayesha-688412260"
+  },
+  {
+    "Name": "Zoya Nasreen",
+    "Bio": "Core team member at IEEE CIS | Student at Muffakham Jah College of Engineering & Technology",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "CSE",
+    "Year": 2021,
+    "LinkedIn": "https://www.linkedin.com/in/zoya-nasreen-a38332255"
+  },
+  {
+    "Name": "Maryum Urooj Ahmed",
+    "Bio": "AI Researcher | Full-Stack Developer | Passionate About Human-Computer Interaction",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "CSE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/maryum-urooj-ahmed"
+  },
+  {
+    "Name": "Mariyam Hussaini",
+    "Bio": "Vice Chair at IEEE Women In Engineering Club MJCET",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "IT",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/mariyam-hussaini-001634201"
+  },
+  {
+    "Name": "Umamah Auaz",
+    "Bio": "Keen interest in embedded systems and robotics.",
+    "College": "Lords Institute of Science and Technology",
+    "Branch": "CSE",
+    "Year": 2020,
+    "LinkedIn": "https://www.linkedin.com/in/example-user18"
+  }
+]

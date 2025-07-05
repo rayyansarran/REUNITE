@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Connect - Networking Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .loading::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Cards */
+        .college-card, .branch-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .college-card:hover, .branch-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        
+        .college-card img { display: block; margin: 0 auto 16px auto; width: 110px; height: 110px; object-fit: contain; }
+        .college-card { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 260px; }
+        .college-card h3 { text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; font-size: 1.25rem; margin-bottom: 10px; }
+        .college-card p { text-align: center; }
+        
+        .branch-card h3 {
+            margin: 0 0 12px 0;
+            color: #1f2937;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .branch-card p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+        
+        /* Alumni Cards */
+        .alumni-card {
+            border: 1px solid #e5e7eb;
+            padding: 24px;
+            margin: 20px 0;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .alumni-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        
+        .alumni-card h3 {
+            margin: 0 0 15px 0;
+            color: #1f2937;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .alumni-card p {
+            margin: 8px 0;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .alumni-card .detail-label {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .alumni-card a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 16px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .alumni-card a:hover {
+            background: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-md">
+        <div class="flex items-center space-x-4">
+            <div>
+                <img class="w-40 cursor-pointer" src="./reunite logo.png" alt="ReUnite" onclick="window.location.href='navbar.html'">
+            </div>
+        </div>
+
+        <div class="flex space-x-4">
+            <a href="client/index.html" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">Announcements</a>
+            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">Resources</a>
+            <input type="text" id="searchInput" placeholder="Search alumni, colleges..." class="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200">
+            <a href="client/index.html" id="authBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Account</a>
+            <a href="client/account.html" id="navbarProfileLink" style="display:none">
+                <img id="navbarProfilePic" src="client/images/default-avatar.png" alt="Profile" style="width:40px;height:40px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-cover bg-center h-[60vh] mb-8" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1');">
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="text-center text-white max-w-xl">
+          <h1 class="text-4xl font-bold mb-4">🎓 ReUnite to Rise Together.</h1>
+          <p class="text-lg mb-6">Connect with fellow graduates, undergraduates and faculties, create and explore opportunities, and grow together.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        
+        <!-- Header Section -->
+        
+
+        <!-- Main Result Container -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+            <div id="result" class="result">
+                <div class="loading">Loading colleges...</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const baseUrl = 'http://localhost:3000';
+        let currentCollege = null;
+        let currentBranch = null;
+        let collegesData = [];
+        let branchesData = [];
+        let alumniData = [];
+        
+        async function fetchColleges() {
+            try {
+                showLoading('Loading colleges...');
+                const response = await fetch(`${baseUrl}/api/colleges`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                collegesData = await response.json();
+                
+                console.log('Fetched colleges:', collegesData);
+                renderColleges();
+
+            } catch (error) {
+                console.error('Error fetching colleges:', error);
+                showError(`Unable to load colleges: ${error.message}`);
+            }
+        }
+
+        function renderColleges(filter = '') {
+            const resultDiv = document.getElementById('result');
+            const filteredColleges = collegesData.filter(college => college.toLowerCase().includes(filter.toLowerCase()));
+
+            // Map college names to logo image paths
+            const logoMap = {
+              "deccan college of engineering and technology": "/logos/dcet.png",
+              "lords institute of science and technology": "/logos/lords.png",
+              "muffakham jah college of engineering & technology": "/logos/mj.png"
+            };
+            
+            if (filteredColleges.length === 0) {
+                let message = filter
+                    ? `No colleges found matching "${filter}".`
+                    : 'No colleges found in the database.';
+                resultDiv.innerHTML = `<div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">${message}</div>`;
+            } else {
+                const collegeCards = filteredColleges.map((college, index) => {
+                    const key = college.trim().toLowerCase();
+                    return `
+                    <div class="college-card" data-college="${college}" data-index="${index}">
+                        <img src="${logoMap[key] || '/logos/default.png'}" class="w-full rounded-lg mb-2" alt="${college} Logo">
+                        <h3>${college}</h3>
+                        <p>Explore branches and connect with alumni from this institution</p>
+                    </div>
+                    `;
+                }).join('');
+                
+                resultDiv.innerHTML = `
+                    
+
+                    <!-- Section Header -->
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Let's start by exploring people from your college on LinkedIn</h2>
+                        <p class="text-lg text-gray-600">Select your institution to explore branches and connect with fellow alumni</p>
+                    </div>
+
+                    <!-- Colleges Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${collegeCards}
+                    </div>
+                `;
+                
+                // Add event listeners to college cards
+                document.querySelectorAll('.college-card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        const college = this.getAttribute('data-college');
+                        fetchBranches(college);
+                    });
+                });
+            }
+        }
+
+        async function fetchBranches(college) {
+            try {
+                currentCollege = college;
+                currentBranch = null;
+                showLoading('Loading branches...');
+                const response = await fetch(`${baseUrl}/api/branches/${encodeURIComponent(college)}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                branchesData = await response.json();
+                
+                console.log('Fetched branches:', branchesData);
+                renderBranches();
+                
+            } catch (error) {
+                console.error('Error fetching branches:', error);
+                showError(`Unable to load branches: ${error.message}`);
+            }
+        }
+
+        function renderBranches(filter = '') {
+            const resultDiv = document.getElementById('result');
+            const filteredBranches = filter 
+                ? branchesData.filter(branch => branch.toLowerCase().includes(filter.toLowerCase()))
+                : branchesData;
+
+            const backButton = `
+                <!-- Back Button -->
+                <button onclick="fetchColleges()" class="mb-6 inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back to Colleges
+                </button>
+            `;
+
+            const breadcrumb = `
+                <!-- Breadcrumb -->
+                <nav class="mb-6 bg-gray-50 px-4 py-2 rounded-lg">
+                    <span onclick="fetchColleges()" class="cursor-pointer text-blue-600 hover:text-blue-800">Colleges</span> 
+                    <span class="text-gray-500 mx-2">></span>
+                    <span class="text-gray-900 font-medium">${currentCollege}</span>
+                </nav>
+            `;
+
+            if (!branchesData || branchesData.length === 0) {
+                resultDiv.innerHTML = `
+                    ${backButton}
+                    ${breadcrumb}
+                    <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">No branches found for this college.</div>
+                `;
+                return;
+            }
+
+            if (filteredBranches.length === 0) {
+                resultDiv.innerHTML = `
+                    ${backButton}
+                    ${breadcrumb}
+                    <div class="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-3 rounded-lg">
+                        No branches found matching "${filter}". Showing all branches instead.
+                    </div>
+                    <!-- Section Header -->
+                    <div class="text-center my-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Branches at ${currentCollege}</h2>
+                        <p class="text-lg text-gray-600">Select a department to view profiles and connect with people</p>
+                    </div>
+                    <!-- Branches Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${branchesData.map((branch, index) => `
+                            <div class="branch-card" data-college="${currentCollege}" data-branch="${branch}" data-index="${index}">
+                                <div class="card-icon">📚</div>
+                                <h3>${branch}</h3>
+                                <p>Connect with ${branch} graduates from ${currentCollege}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    ${backButton}
+                    <!-- Section Header -->
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Branches at ${currentCollege}</h2>
+                        <p class="text-lg text-gray-600">Select a department to view profiles and connect with people</p>
+                    </div>
+                    <!-- Branches Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        ${filteredBranches.map((branch, index) => `
+                            <div class="branch-card" data-college="${currentCollege}" data-branch="${branch}" data-index="${index}">
+                                <div class="card-icon">📚</div>
+                                <h3>${branch}</h3>
+                                <p>Connect with ${branch} graduates from ${currentCollege}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            // Add event listeners to branch cards
+            document.querySelectorAll('.branch-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const college = this.getAttribute('data-college');
+                    const branch = this.getAttribute('data-branch');
+                    fetchAlumni(college, branch);
+                });
+            });
+        }
+
+        async function fetchAlumni(college, branch) {
+            try {
+                currentBranch = branch;
+                showLoading('Loading alumni profiles...');
+                const response = await fetch(`${baseUrl}/api/alumni/${encodeURIComponent(college)}/${encodeURIComponent(branch)}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                alumniData = await response.json();
+                
+                console.log('Fetched alumni:', alumniData);
+                renderAlumni();
+
+            } catch (error) {
+                console.error('Error fetching alumni:', error);
+                showError(`Unable to load alumni profiles: ${error.message}`);
+            }
+        }
+
+        function renderAlumni(filter = '') {
+            const resultDiv = document.getElementById('result');
+            const filteredAlumni = filter
+                ? alumniData.filter(person => 
+                    person.name.toLowerCase().includes(filter.toLowerCase()) ||
+                    (person.bio && person.bio.toLowerCase().includes(filter.toLowerCase())))
+                : alumniData;
+
+            const backButton = `
+                <!-- Back Button -->
+                <button onclick="fetchBranches('${currentCollege}')" class="mb-6 inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back to Branches
+                </button>
+            `;
+
+            const breadcrumb = `
+                <!-- Breadcrumb -->
+                <nav class="mb-6 bg-gray-50 px-4 py-2 rounded-lg">
+                    <span onclick="fetchColleges()" class="cursor-pointer text-blue-600 hover:text-blue-800">Colleges</span> 
+                    <span class="text-gray-500 mx-2">></span>
+                    <span onclick="fetchBranches('${currentCollege}')" class="cursor-pointer text-blue-600 hover:text-blue-800">${currentCollege}</span> 
+                    <span class="text-gray-500 mx-2">></span>
+                    <span class="text-gray-900 font-medium">${currentBranch}</span>
+                </nav>
+            `;
+
+            if (!alumniData || alumniData.length === 0) {
+                resultDiv.innerHTML = `
+                    ${backButton}
+                    ${breadcrumb}
+                    <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">No alumni profiles found for this branch yet.</div>
+                `;
+                return;
+            }
+
+            if (filteredAlumni.length === 0) {
+                resultDiv.innerHTML = `
+                    ${backButton}
+                    ${breadcrumb}
+                    <div class="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-3 rounded-lg">
+                        No alumni profiles found matching "${filter}". Showing all profiles instead.
+                    </div>
+                    <!-- Section Header -->
+                    <div class="text-center my-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">People from ${currentBranch} department at ${currentCollege}</h2>
+                        <p class="text-lg text-gray-600">Connect with people from ${currentBranch} department at ${currentCollege}</p>
+                    </div>
+                    <!-- Alumni Cards -->
+                    <div class="space-y-6">
+                        ${alumniData.map(person => `
+                            <div class="alumni-card">
+                                <h3>👤 ${person.name}</h3>
+                                <p><span class="detail-label">About:</span> ${person.bio || 'Bio not available'}</p>
+                                <p><span class="detail-label">Graduation Year:</span> ${person.year || 'Not specified'}</p>
+                                <p><span class="detail-label">Department:</span> ${currentBranch}</p>
+                                <p><span class="detail-label">College:</span> ${currentCollege}</p>
+                                ${person.linkedin ? `<p><a href="${person.linkedin}" target="_blank">🔗 Connect on LinkedIn</a></p>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    ${backButton}
+                    ${breadcrumb}
+                    <!-- Section Header -->
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">People from ${currentBranch} department at ${currentCollege}</h2>
+                        <p class="text-lg text-gray-600">Connect with people from ${currentBranch} department at ${currentCollege}</p>
+                    </div>
+                    <!-- Alumni Cards -->
+                    <div class="space-y-6">
+                        ${filteredAlumni.map(person => `
+                            <div class="alumni-card">
+                                <h3>👤 ${person.name}</h3>
+                                <p><span class="detail-label">About:</span> ${person.bio || 'Bio not available'}</p>
+                                <p><span class="detail-label">Graduation Year:</span> ${person.year || 'Not specified'}</p>
+                                <p><span class="detail-label">Department:</span> ${currentBranch}</p>
+                                <p><span class="detail-label">College:</span> ${currentCollege}</p>
+                                ${person.linkedin ? `<p><a href="${person.linkedin}" target="_blank">🔗 Connect on LinkedIn</a></p>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        }
+
+        function showLoading(message) {
+            document.getElementById('result').innerHTML = `<div class="loading">${message}</div>`;
+        }
+
+        function showError(message) {
+            document.getElementById('result').innerHTML = `<div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">${message}</div>`;
+        }
+
+        const API_URL = 'http://localhost:5000/api';
+        const token = localStorage.getItem('token');
+
+        async function updateNavbarProfile() {
+            const authBtn = document.getElementById('authBtn');
+            const profileLink = document.getElementById('navbarProfileLink');
+            const profilePic = document.getElementById('navbarProfilePic');
+            if (token) {
+                try {
+                    const response = await fetch(`${API_URL}/users/profile`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (!response.ok) throw new Error('Not authenticated');
+                    const data = await response.json();
+                    profilePic.src = (data.profilePicture && data.profilePicture !== 'default-avatar.png')
+                        ? `http://localhost:5000/${data.profilePicture}`
+                        : 'client/images/default-avatar.png';
+                    authBtn.style.display = 'none';
+                    profileLink.style.display = 'inline-block';
+                } catch (err) {
+                    authBtn.style.display = 'inline-block';
+                    profileLink.style.display = 'none';
+                    profilePic.src = 'client/images/default-avatar.png';
+                }
+            } else {
+                authBtn.style.display = 'inline-block';
+                profileLink.style.display = 'none';
+                profilePic.src = 'client/images/default-avatar.png';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateNavbarProfile);
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavbarProfile();
+            fetchColleges();
+
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', e => {
+                const searchTerm = e.target.value.trim().toLowerCase();
+                if (currentCollege === null) {
+                    renderColleges(searchTerm);
+                } else if (currentBranch === null) {
+                    renderBranches(searchTerm);
+                } else {
+                    renderAlumni(searchTerm);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

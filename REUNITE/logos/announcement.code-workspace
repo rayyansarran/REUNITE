@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "announcement",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "announcement"
+	}
+}

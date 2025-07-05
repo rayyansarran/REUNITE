@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e9ecef;
+    }
+    .header h1 {
+      margin: 0;
+      color: #2c3e50;
+    }
+    .logout-btn {
+      background-color: #dc3545;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .user-card {
+      border: 1px solid #e9ecef;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .user-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e9ecef;
+    }
+    .profile-picture {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #007bff;
+    }
+    .user-info {
+      flex-grow: 1;
+    }
+    .user-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 0 0 0.5rem 0;
+    }
+    .user-email {
+      color: #6c757d;
+      margin: 0;
+    }
+    .user-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .detail-group {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 6px;
+      border-left: 4px solid #007bff;
+    }
+    .detail-group h4 {
+      margin: 0 0 0.5rem 0;
+      color: #495057;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .detail-group p {
+      margin: 0.25rem 0;
+      color: #2c3e50;
+    }
+    .bio-section {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      border-left: 4px solid #28a745;
+    }
+    .bio-section h4 {
+      margin: 0 0 0.5rem 0;
+      color: #495057;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .bio-text {
+      color: #2c3e50;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .approve {
+      background-color: #28a745;
+      color: white;
+    }
+    .approve:hover {
+      background-color: #218838;
+      transform: translateY(-1px);
+    }
+    .reject {
+      background-color: #dc3545;
+      color: white;
+    }
+    .reject:hover {
+      background-color: #c82333;
+      transform: translateY(-1px);
+    }
+    .no-users {
+      text-align: center;
+      padding: 3rem;
+      color: #6c757d;
+      font-size: 1.1rem;
+    }
+    .timestamp {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Pending User Approvals</h1>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <div id="user-list" class="user-list"></div>
+  </div>
+
+  <script>
+    // Get token from localStorage
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('No token found. Please log in.');
+      window.location.href = 'client/index.html';
+    }
+    const apiBase = 'http://localhost:5000';
+
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'client/index.html';
+    }
+
+    function fetchPendingUsers() {
+      fetch(`${apiBase}/api/admin/users/pending`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+        .then(res => {
+          if (res.status === 401 || res.status === 403) {
+            localStorage.removeItem('token');
+            window.location.href = 'client/index.html';
+            return;
+          }
+          return res.json();
+        })
+        .then(data => data && displayUsers(data))
+        .catch(err => console.error('Failed to fetch users:', err));
+    }
+
+    function displayUsers(users) {
+      const list = document.getElementById('user-list');
+      list.innerHTML = '';
+
+      if (users.length === 0) {
+        list.innerHTML = '<div class="no-users"><p>No pending users found.</p></div>';
+        return;
+      }
+
+      users.forEach(user => {
+        const card = document.createElement('div');
+        card.className = 'user-card';
+        
+        // Format dates
+        const createdAt = new Date(user.createdAt).toLocaleString();
+        const updatedAt = new Date(user.updatedAt).toLocaleString();
+        
+        // Get profile picture URL
+        const profilePicUrl = user.profilePicture ? 
+          `http://localhost:5000/${user.profilePicture}` : 
+          'client/images/default-avatar.png';
+        
+        // Get college name
+        const collegeName = user.College ? user.College.name : user.collegeName || 'Not specified';
+        
+        card.innerHTML = `
+          <div class="user-header">
+            <img src="${profilePicUrl}" alt="Profile Picture" class="profile-picture">
+            <div class="user-info">
+              <h2 class="user-name">${user.firstName} ${user.lastName}</h2>
+              <p class="user-email">${user.email}</p>
+              <p class="timestamp">Registered: ${createdAt}</p>
+            </div>
+          </div>
+          
+          ${user.bio ? `
+            <div class="bio-section">
+              <h4>Bio</h4>
+              <p class="bio-text">${user.bio}</p>
+            </div>
+          ` : ''}
+          
+          <div class="user-details">
+            <div class="detail-group">
+              <h4>Basic Information</h4>
+              <p><strong>Username:</strong> ${user.username}</p>
+              <p><strong>Phone:</strong> ${user.phoneNumber || 'Not provided'}</p>
+              <p><strong>Student Email:</strong> ${user.studentMailId || 'Not provided'}</p>
+            </div>
+            
+            <div class="detail-group">
+              <h4>Academic Information</h4>
+              <p><strong>College:</strong> ${collegeName}</p>
+              <p><strong>Graduation Year:</strong> ${user.yearOfGraduation || 'Not specified'}</p>
+              <p><strong>Status:</strong> <span style="color: #ffc107; font-weight: bold;">${user.status}</span></p>
+            </div>
+            
+            <div class="detail-group">
+              <h4>Career Information</h4>
+              <p><strong>Career Status:</strong> ${user.currentCareerStatus || 'Not specified'}</p>
+              <p><strong>LinkedIn:</strong> ${user.linkedinProfileUrl ? `<a href="${user.linkedinProfileUrl}" target="_blank">View Profile</a>` : 'Not provided'}</p>
+            </div>
+          </div>
+          
+          <div class="action-buttons">
+            <button class="approve" onclick="updateStatus(${user.id}, 'active')">✓ Approve</button>
+            <button class="reject" onclick="updateStatus(${user.id}, 'deactive')">✗ Reject</button>
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function updateStatus(userId, newStatus) {
+      const action = newStatus === 'active' ? 'approve' : 'reject';
+      if (!confirm(`Are you sure you want to ${action} this user?`)) {
+        return;
+      }
+      
+      fetch(`${apiBase}/api/admin/users/${userId}/status`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ status: newStatus })
+      })
+        .then(res => {
+          if (res.status === 401 || res.status === 403) {
+            localStorage.removeItem('token');
+            window.location.href = 'client/index.html';
+            return;
+          }
+          return res.json();
+        })
+        .then(data => {
+          if (data) {
+            alert(`User ${action}d successfully!`);
+            fetchPendingUsers();
+          }
+        })
+        .catch(err => {
+          console.error('Failed to update user status:', err);
+          alert('Failed to update user status');
+        });
+    }
+
+    fetchPendingUsers();
+  </script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REUNITE Announcements</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../reunite logo.png">
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+        .main-content, .auth-forms, .modal-content, .post, .posts-container, .auth-form {
+            background: #fff !important;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.03);
+            border-radius: 18px !important;
+        }
+        .navbar {
+            background: #fff !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-radius: 16px;
+            padding: 18px 32px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .nav-logo {
+            width: 48px;
+            height: auto;
+            margin-right: 12px;
+        }
+        .nav-brand h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+        }
+        .nav-links {
+            display: flex;
+            gap: 18px;
+        }
+        .nav-link, .btn {
+            background: linear-gradient(90deg, #667eea 0%, #0056b3 100%);
+            color: #fff !important;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 22px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(102,126,234,0.08);
+            transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .nav-link.active, .nav-link:hover, .btn:hover {
+            background: linear-gradient(90deg, #0056b3 0%, #667eea 100%);
+            color: #fff !important;
+            box-shadow: 0 4px 16px rgba(102,126,234,0.13);
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #667eea 0%, #0056b3 100%);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #0056b3 0%, #667eea 100%);
+        }
+        .auth-header img {
+            width: 90px;
+            margin-bottom: 10px;
+        }
+        .auth-header h2 {
+            color: #2c3e50;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1.5px solid #e9ecef;
+        }
+        .modal-content {
+            max-width: 500px;
+        }
+        .form-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: #fff !important;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        .auth-form {
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .auth-forms {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .auth-form {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #f8f9fa;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        .status-label {
+            background: #ff6b6b;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: help;
+            transition: background-color 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        .status-label[title*="Pending"] {
+            background: #ffa726;
+        }
+        .status-label[title*="Rejected"] {
+            background: #ef5350;
+        }
+        .status-label:hover {
+            opacity: 0.9;
+        }
+        .status-label:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 50%;
+            top: 120%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            white-space: pre-line;
+            z-index: 10;
+            min-width: 220px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .filter-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            color: #6c757d;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .filter-btn.active {
+            background: linear-gradient(90deg, #667eea 0%, #0056b3 100%);
+            color: white;
+            border-color: #667eea;
+        }
+        .filter-btn:hover {
+            background: #e9ecef;
+            border-color: #6c757d;
+        }
+        .filter-btn.active:hover {
+            background: linear-gradient(90deg, #0056b3 0%, #667eea 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (only visible when authenticated) -->
+    <nav class="navbar hidden" id="navbar">
+        <div class="nav-brand" style="display: flex; align-items: center; gap: 10px;">
+            <img src="../reunite logo.png" alt="REUNITE" class="nav-logo">
+            <h1>Announcements</h1>
+        </div>
+        <div class="nav-links">
+            <a href="../home.html" class="nav-link">Home</a>
+            <button id="create-post-btn" class="btn btn-primary" type="button">Create Post</button>
+            <a href="account.html" id="navbarProfileLink">
+                <img id="navbarProfilePic" src="images/default-avatar.png" alt="Profile" style="width:40px;height:40px;border-radius:50%;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content (only visible when authenticated) -->
+    <div id="main-content" class="main-content hidden">
+        <div class="container">
+            <!-- Create Post Modal -->
+            <div id="create-post-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Create Announcement</h2>
+                    <form id="create-post-form">
+                        <div class="form-group">
+                            <label for="post-content">Content</label>
+                            <textarea id="post-content" required placeholder="Share your announcement with the REUNITE community..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-image">Image (optional)</label>
+                            <input type="file" id="post-image" accept="image/*">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-telegram-link">Telegram Link (optional)</label>
+                            <input type="url" id="post-telegram-link" placeholder="https://t.me/yourchannel or https://t.me/yourusername">
+                        </div>
+                        <div id="image-preview" class="hidden"></div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="is-college-specific">
+                                Make this announcement college-specific
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Post Announcement</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Posts Container -->
+            <div id="posts-container" class="posts-container">
+                <!-- Posts will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Forms (only visible when not authenticated) -->
+    <div id="auth-forms" class="auth-forms">
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form">
+            <div class="auth-header">
+                <img src="../reunite logo.png" alt="REUNITE" class="auth-logo">
+                <h2>Welcome to REUNITE</h2>
+                <p>Connect with your alumni community</p>
+            </div>
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p class="auth-switch">Don't have an account? <a href="#" id="show-register">Register</a></p>
+        </form>
+
+        <!-- Register Form - Step 1: Basic Information -->
+        <form id="register-form-step1" class="auth-form hidden">
+            <div class="auth-header">
+                <img src="../reunite logo.png" alt="REUNITE" class="auth-logo">
+                <h2>Join REUNITE</h2>
+                <p>Step 1 of 2: Basic Information</p>
+            </div>
+            <div class="form-group">
+                <label for="register-username">Username</label>
+                <input type="text" id="register-username" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" required autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" required autocomplete="new-password">
+            </div>
+            <div class="form-group">
+                <label for="register-college">College</label>
+                <select id="register-college" required>
+                    <option value="">Select your college</option>
+                    <!-- Colleges will be loaded dynamically -->
+                </select>
+            </div>
+            <button type="button" id="next-step" class="btn btn-primary">Next Step</button>
+            <p class="auth-switch">Already have an account? <a href="#" id="show-login">Login</a></p>
+        </form>
+
+        <!-- Register Form - Step 2: Personal Information -->
+        <form id="register-form-step2" class="auth-form hidden">
+            <div class="auth-header">
+                <img src="../reunite logo.png" alt="REUNITE" class="auth-logo">
+                <h2>Complete Your Profile</h2>
+                <p>Step 2 of 2: Personal Information</p>
+            </div>
+            <div class="form-group">
+                <label for="register-firstname">First Name</label>
+                <input type="text" id="register-firstname" required autocomplete="given-name">
+            </div>
+            <div class="form-group">
+                <label for="register-lastname">Last Name</label>
+                <input type="text" id="register-lastname" required autocomplete="family-name">
+            </div>
+            <div class="form-group">
+                <label for="register-phone">Phone Number</label>
+                <input type="tel" id="register-phone" placeholder="+91 98765 43210" autocomplete="tel">
+            </div>
+            <div class="form-group">
+                <label for="register-graduation-year">Year of Graduation</label>
+                <select id="register-graduation-year" required>
+                    <option value="">Select graduation year</option>
+                    <!-- Years will be populated dynamically -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="register-career-status">Current Career Status</label>
+                <input type="text" id="register-career-status" list="career-suggestions" required placeholder="e.g., Software Engineer @ Google, Business Analyst @ Microsoft">
+                <datalist id="career-suggestions">
+                    <option value="Software Engineer @ Google">
+                    <option value="Software Engineer @ Microsoft">
+                    <option value="Software Engineer @ Amazon">
+                    <option value="Software Engineer @ Apple">
+                    <option value="Software Engineer @ Meta">
+                    <option value="Software Engineer @ Netflix">
+                    <option value="Software Engineer @ Uber">
+                    <option value="Software Engineer @ Airbnb">
+                    <option value="Data Scientist @ Google">
+                    <option value="Data Scientist @ Microsoft">
+                    <option value="Data Scientist @ Amazon">
+                    <option value="Business Analyst @ Google">
+                    <option value="Business Analyst @ Microsoft">
+                    <option value="Business Analyst @ Amazon">
+                    <option value="Product Manager @ Google">
+                    <option value="Product Manager @ Microsoft">
+                    <option value="Product Manager @ Amazon">
+                    <option value="Product Manager @ Apple">
+                    <option value="Product Manager @ Meta">
+                    <option value="UX Designer @ Google">
+                    <option value="UX Designer @ Microsoft">
+                    <option value="UX Designer @ Apple">
+                    <option value="DevOps Engineer @ Google">
+                    <option value="DevOps Engineer @ Microsoft">
+                    <option value="DevOps Engineer @ Amazon">
+                    <option value="Machine Learning Engineer @ Google">
+                    <option value="Machine Learning Engineer @ Microsoft">
+                    <option value="Machine Learning Engineer @ Amazon">
+                    <option value="Frontend Developer @ Google">
+                    <option value="Frontend Developer @ Microsoft">
+                    <option value="Frontend Developer @ Amazon">
+                    <option value="Backend Developer @ Google">
+                    <option value="Backend Developer @ Microsoft">
+                    <option value="Backend Developer @ Amazon">
+                    <option value="Full Stack Developer @ Google">
+                    <option value="Full Stack Developer @ Microsoft">
+                    <option value="Full Stack Developer @ Amazon">
+                    <option value="Research Scientist @ Google">
+                    <option value="Research Scientist @ Microsoft">
+                    <option value="Research Scientist @ Amazon">
+                    <option value="Entrepreneur">
+                    <option value="Freelancer">
+                    <option value="Student">
+                    <option value="Unemployed">
+                    <option value="Retired">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label for="register-linkedin">LinkedIn Profile URL (optional)</label>
+                <input type="url" id="register-linkedin" placeholder="https://linkedin.com/in/yourprofile">
+            </div>
+            <div class="form-group">
+                <label for="register-student-email">Student Email (optional)</label>
+                <input type="email" id="register-student-email" placeholder="yourname@college.edu">
+            </div>
+            <div class="form-buttons">
+                <button type="button" id="prev-step" class="btn btn-secondary">Previous</button>
+                <button type="submit" class="btn btn-primary">Complete Registration</button>
+            </div>
+            <p class="auth-switch">Already have an account? <a href="#" id="show-login">Login</a></p>
+        </form>
+    </div>
+    <script src="app.js"></script>
+    <script>
+    // Use API_URL from app.js
+    const token = localStorage.getItem('token');
+
+    async function updateNavbarProfile() {
+        const profileLink = document.getElementById('navbarProfileLink');
+        const profilePic = document.getElementById('navbarProfilePic');
+        if (token) {
+            try {
+                const response = await fetch(`${API_URL}/users/profile`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!response.ok) throw new Error('Not authenticated');
+                const data = await response.json();
+                if (data.profilePicture && data.profilePicture !== 'default-avatar.png') {
+                    profilePic.src = `http://localhost:5000/${data.profilePicture}`;
+                } else {
+                    profilePic.src = 'images/default-avatar.png';
+                }
+            } catch (err) {
+                profilePic.src = 'images/default-avatar.png';
+            }
+        } else {
+            profilePic.src = 'images/default-avatar.png';
+        }
+    }
+    document.addEventListener('DOMContentLoaded', updateNavbarProfile);
+    </script>
+    <!-- Modal for blocked college access -->
+    <div id="college-blocked-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" id="close-blocked-modal">&times;</span>
+            <h2>Access Restricted</h2>
+            <p id="college-blocked-message"></p>
+        </div>
+    </div>
+</body>
+</html> 
